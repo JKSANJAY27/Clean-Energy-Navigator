@@ -58,8 +58,6 @@ const NearbyResources = () => {
         setLoading(false);
         return;
       }
-
-      // Make a request
       var config = {
         method: 'get',
         url: `https://api.geoapify.com/v2/places?categories=commercial.shopping_mall&filter=circle:${location.longitude},${location.latitude},10000&limit=10&apiKey=${apiKey}`,
@@ -84,27 +82,21 @@ const NearbyResources = () => {
     fetchNearbyResources();
   }, [location.latitude, location.longitude]); // Run only when location changes
 
-  if (loading) {
-    return <div>Loading nearby resources...</div>;
-  }
-
-  if (error) {
-    return <div className="text-red-500">Error: {error}</div>;
-  }
-
   return (
-    <div>
-      <h3 className="text-xl font-semibold mb-2">Nearby Renewable Energy Resources</h3>
+    <div className="bg-white rounded-lg shadow-md p-6">
+      <h3 className="text-xl font-semibold mb-4 text-gray-800">Nearby Renewable Energy Resources</h3>
+      {loading && <div className="text-gray-600">Loading nearby resources...</div>}
+      {error && <div className="text-red-500">Error: {error}</div>}
       {places.length > 0 ? (
-        <ul>
+        <ul className="list-disc list-inside text-gray-700">
           {places.map((place, index) => (
             <li key={index} className="mb-2">
-              {place.name} - {place.formatted}
+              <span className="font-medium">{place.name}</span> - {place.formatted}
             </li>
           ))}
         </ul>
       ) : (
-        <div>No resources found nearby.</div>
+        <div className="text-gray-600">No resources found nearby.</div>
       )}
     </div>
   );

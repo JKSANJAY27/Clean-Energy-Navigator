@@ -1,7 +1,9 @@
+// src/app/page.tsx
 import React from 'react';
 import Link from 'next/link';
 import { ArrowRight, Sun, Wind, Battery, DollarSign, LineChart, MapPin } from 'lucide-react';
 import RotatingText from '@/components/RotatingText';
+import NearbyResources from './location/page';
 
 interface FeatureCardProps {
   icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
@@ -70,8 +72,8 @@ const HomePage = () => {
         </Link>
       </header>
 
-      {/* Sustainability Check Section */}
-      <section className="container mx-auto px-4 py-8">
+            {/* Sustainability Check Section */}
+            <section className="container mx-auto px-4 py-8">
         <h2 className="text-3xl font-bold text-center mb-6 text-gray-800">Check Product Sustainability</h2>
         <p className="text-xl text-center text-gray-600 mb-8">
           Quickly analyze the sustainability of a product by entering its link.
@@ -82,6 +84,23 @@ const HomePage = () => {
             className="inline-flex items-center space-x-2 bg-blue-600 text-white px-8 py-4 rounded-full text-lg hover:bg-blue-700 transition-colors duration-300"
           >
             <span>Check Product</span>
+            <ArrowRight className="w-5 h-5" />
+          </Link>
+        </div>
+      </section>
+
+            {/* Call to action */}
+            <section className="container mx-auto px-4 py-8">
+        <h2 className="text-3xl font-bold text-center mb-6 text-gray-800">Find Sustainable Energy Alternatives Nearby</h2>
+        <p className="text-xl text-center text-gray-600 mb-8">
+          Look for some better options in places near you
+        </p>
+        <div className="text-center">
+          <Link
+            href="/location"
+            className="inline-flex items-center space-x-2 bg-purple-600 text-white px-8 py-4 rounded-full text-lg hover:bg-purple-700 transition-colors duration-300"
+          >
+            <span>Find Location</span>
             <ArrowRight className="w-5 h-5" />
           </Link>
         </div>
